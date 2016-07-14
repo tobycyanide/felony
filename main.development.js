@@ -1,5 +1,5 @@
-import { app, BrowserWindow, Menu, shell, autoUpdater } from 'electron'
-const { version } = require('./package.json')
+import {app, BrowserWindow, Menu, shell, autoUpdater} from 'electron'
+const {version} = require('./package.json')
 import open from 'open'
 
 let menu
@@ -53,14 +53,14 @@ const createWindow = () => {
     'title-bar-style': 'hidden',
   })
 
-  mainWindow.loadURL(`file://${ __dirname }/app/app.html`)
+  mainWindow.loadURL(`file://${__dirname}/app/app.html`)
 
   mainWindow.webContents.on('did-finish-load', () => {
     mainWindow.show()
     mainWindow.focus()
   })
 
-  mainWindow.webContents.on('new-window', function (event, url) {
+  mainWindow.webContents.on('new-window', (event, url) => {
     event.preventDefault()
     open(url)
   })
@@ -146,7 +146,9 @@ const createWindow = () => {
         label: 'Toggle Full Screen',
         accelerator: 'Ctrl+Command+F',
         click() {
-          mainWindow.setFullScreen(!mainWindow.isFullScreen())
+          if (!!mainWindow) {
+            mainWindow.setFullScreen(!mainWindow.isFullScreen())
+          }
         },
       }, {
         label: 'Toggle Developer Tools',
@@ -158,7 +160,9 @@ const createWindow = () => {
         label: 'Toggle Full Screen',
         accelerator: 'Ctrl+Command+F',
         click() {
-          mainWindow.setFullScreen(!mainWindow.isFullScreen())
+          if (!!mainWindow) {
+            mainWindow.setFullScreen(!mainWindow.isFullScreen())
+          }
         },
       }],
     }, {
@@ -229,7 +233,9 @@ const createWindow = () => {
         label: 'Toggle &Full Screen',
         accelerator: 'F11',
         click() {
-          mainWindow.setFullScreen(!mainWindow.isFullScreen())
+          if (!!mainWindow) {
+            mainWindow.setFullScreen(!mainWindow.isFullScreen())
+          }
         },
       }, {
         label: 'Toggle &Developer Tools',
@@ -241,7 +247,9 @@ const createWindow = () => {
         label: 'Toggle &Full Screen',
         accelerator: 'F11',
         click() {
-          mainWindow.setFullScreen(!mainWindow.isFullScreen())
+          if (!!mainWindow) {
+            mainWindow.setFullScreen(!mainWindow.isFullScreen())
+          }
         },
       }],
     }, {
